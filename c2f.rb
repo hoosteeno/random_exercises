@@ -14,11 +14,11 @@ def usage
 end
 
 def handle(string)
-  if (m = /(\d+)([fc])/i.match(string))
+  if (m = /^(\d+)([fc])$/i.match(string))
     temp = m[1]
     fn = "convert_#{m[2].downcase}"
     return send(fn, temp.to_f)
-  elsif (m = /(\d+)/.match(string))
+  elsif (m = /^(\d+)$/.match(string))
     return convert_c(m[1].to_f)
   else
     usage
@@ -27,4 +27,5 @@ end
 
 print "Enter a temperature to convert (e.g. 25C or 93F): "
 input = gets.chomp
+#TODO: don't output the random chars people put in, like "43dfdai"
 puts "#{input.upcase} is #{handle(input)}"
