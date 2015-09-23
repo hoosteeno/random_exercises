@@ -1,17 +1,19 @@
 def suffix(i)
-  last_digit = i % 10
-  case last_digit
-  when 1
-    if i % 100 == 11
+  last_2 = i % 100
+  if ((11..13).include? last_2)
+    return "th"
+  else
+    last_1 = i % 10
+    case last_1
+    when 1
+      return "st"
+    when 2
+      return "nd"
+    when 3
+      return "rd"
+    else
       return "th"
     end
-    return "st"
-  when 2
-    return "nd"
-  when 3
-    return "rd"
-  else
-    return "th"
   end
 end
 
